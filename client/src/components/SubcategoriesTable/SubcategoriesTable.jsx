@@ -35,7 +35,7 @@ const SubcategoriesTable = () => {
 		setLoading(true);
 		try {
 			const response = await fetch(
-				"http://localhost:3000/api/v1/subcategories"
+				"https://indiazona-backend.onrender.com/api/v1/subcategories"
 			);
 			const data = await response.json();
 			dispatch(setCategory(data.category));
@@ -62,9 +62,10 @@ const SubcategoriesTable = () => {
 
 	return (
 		<>
-			{loading ?
+			{loading ? (
 				<p>Loading...</p>
-			:	<TableContainer
+			) : (
+				<TableContainer
 					sx={{
 						border: "1px solid rgba(228, 228, 228, 1)",
 						borderRadius: "10px",
@@ -138,7 +139,7 @@ const SubcategoriesTable = () => {
 						</TableBody>
 					</Table>
 				</TableContainer>
-			}
+			)}
 		</>
 	);
 };
