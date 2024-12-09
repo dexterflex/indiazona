@@ -13,22 +13,30 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { addCategory, editCategory, selectCategory } from "../../redux/reducer";
 
-const CategoryDialog = ({ open, setOpen, editData = false }) => {
+const CategoryDialog = ({
+	open,
+	setOpen,
+	editData = false,
+	setEditData = false,
+}) => {
 	const { categories } = useSelector(selectCategory);
 	const [data, setData] = useState({ category: "", subcategory: "" });
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (data) {
+		if (editData) {
 			setData(editData);
 		}
-	}, []);
+	}, [editData]);
 
 	const handleCategoryChange = (event) => {
 		setData({ ...data, [event.target.name]: event.target.value });
 	};
 
 	const handleClose = () => {
+		if (editData) {
+			setEditData(null);
+		}
 		setData({ category: "", subcategory: "" });
 		setOpen(false);
 	};

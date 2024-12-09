@@ -27,9 +27,13 @@ const SubcategoriesTable = () => {
 	const [loading, setLoading] = useState(false);
 	const dispatch = useDispatch();
 	const [open, setOpen] = useState(false);
+	const [editData, setEditData] = useState(null);
 
 	// Function to handle opening the dialog
-	const handleDialogOpen = () => setOpen(true);
+	const handleDialogOpen = (row) => {
+		setEditData(row);
+		setOpen(true);
+	};
 
 	// Function to handle closing the dialog
 	const handleDialogClose = () => setOpen(false);
@@ -121,14 +125,15 @@ const SubcategoriesTable = () => {
 									<TableCell>{row.category}</TableCell>
 									<TableCell>{row.subcategory}</TableCell>
 									<TableCell>
-										<IconButton onClick={handleDialogOpen}>
+										<IconButton onClick={() => handleDialogOpen(row)}>
 											<EditIcon sx={{ color: "rgba(63, 89, 163, 1)" }} />
 										</IconButton>
 
 										<CategoryDialog
 											open={open}
 											setOpen={setOpen}
-											editData={row}
+											editData={editData}
+											setEditData={setEditData}
 										/>
 
 										<IconButton onClick={() => deleteData(row._id)}>
