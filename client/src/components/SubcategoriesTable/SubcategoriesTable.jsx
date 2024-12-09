@@ -35,14 +35,14 @@ const SubcategoriesTable = () => {
 	const handleDialogClose = () => setOpen(false);
 
 	const fetchData = async () => {
-		setLoading(true);
+		// setLoading(true);
 		try {
 			const response = await fetchSubcategories();
-			dispatch(setCategory(response.data.category));
+			dispatch(setCategory(response));
 		} catch (error) {
 			console.error("Error fetching data:", error);
 		}
-		setLoading(false);
+		// setLoading(false);
 	};
 
 	const deleteData = async (id) => {
@@ -62,10 +62,9 @@ const SubcategoriesTable = () => {
 
 	return (
 		<>
-			{loading ? (
+			{loading ?
 				<p>Loading...</p>
-			) : (
-				<TableContainer
+			:	<TableContainer
 					sx={{
 						border: "1px solid rgba(228, 228, 228, 1)",
 						borderRadius: "10px",
@@ -139,7 +138,7 @@ const SubcategoriesTable = () => {
 						</TableBody>
 					</Table>
 				</TableContainer>
-			)}
+			}
 		</>
 	);
 };
