@@ -80,7 +80,7 @@ const CategoryDialog = ({
 						textAlign: "center",
 						color: "rgba(27, 33, 40, 1)",
 					}}>
-					Add new sub category
+					{editData ? "Edit sub category" : "Create sub category"}
 				</DialogTitle>
 				<DialogContent
 					sx={{
