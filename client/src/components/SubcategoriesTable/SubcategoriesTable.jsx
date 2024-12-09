@@ -113,7 +113,7 @@ const SubcategoriesTable = () => {
 						<TableBody>
 							{data.map((row, index) => (
 								<TableRow
-									key={row.id}
+									key={row._id}
 									sx={{
 										bgcolor: index % 2 === 0 ? "white" : "#E6EDFF",
 									}}>
@@ -124,11 +124,13 @@ const SubcategoriesTable = () => {
 										<IconButton onClick={handleDialogOpen}>
 											<EditIcon sx={{ color: "rgba(63, 89, 163, 1)" }} />
 										</IconButton>
+
 										<CategoryDialog
 											open={open}
 											setOpen={setOpen}
 											editData={row}
 										/>
+
 										<IconButton onClick={() => deleteData(row._id)}>
 											<DeleteIcon sx={{ color: "rgba(255, 82, 82, 1)" }} />
 										</IconButton>
