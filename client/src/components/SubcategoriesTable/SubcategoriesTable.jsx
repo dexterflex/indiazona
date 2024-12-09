@@ -16,7 +16,10 @@ import {
 	selectCategory,
 	setCategory,
 } from "../../redux/reducer";
-import { deleteSubcategory } from "../../services/subcategory";
+import {
+	deleteSubcategory,
+	fetchSubcategories,
+} from "../../services/subcategory";
 import CategoryDialog from "../Dialog/CategoryDialog";
 
 const SubcategoriesTable = () => {
@@ -34,11 +37,8 @@ const SubcategoriesTable = () => {
 	const fetchData = async () => {
 		setLoading(true);
 		try {
-			const response = await fetch(
-				"https://indiazona-backend.onrender.com/api/v1/subcategories"
-			);
-			const data = await response.json();
-			dispatch(setCategory(data.category));
+			const response = await fetchSubcategories();
+			dispatch(setCategory(response.data.category));
 		} catch (error) {
 			console.error("Error fetching data:", error);
 		}
